@@ -97,6 +97,8 @@ oración        -> sujeto verbo objeto
                 | sujeto verbo
                 | sujeto "issi"
 ```
+Aqui la ambigüedad se da debido a que una secuenia de palabras que forman una oración se puede dar de diferente maneras, lo cual tambien rompería el parser, ya que este no sabría que camino tomar y se formarian más de un árbol, por lo que es por eso que existe ambigüedad dentro de la gramatica. 
+
 
 
 
