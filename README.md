@@ -90,22 +90,9 @@ oración        -> sujeto verbo objeto| sujeto verbo| sujeto "issi"
 ```
 Aqui la ambigüedad se da debido a que una secuenia de palabras que forman una oración se puede dar de diferente maneras, lo cual tambien rompería el parser, ya que este no sabría que camino tomar y se formarian más de un árbol, por lo que es por eso que existe ambigüedad dentro de la gramatica. 
 
-# ¿Pero entonces como eliminar la recursividad hacia la izquierda?
+# ¿Pero entonces como eliminar la recursividad hacia la izquierda y la ambigüedad?
 
-Como había mencionado la recursividad se encuntra aquí:
-```bnf
-frase_nominal  -> frase_nominal conjunción frase_nominal
-```
-y para eliminarla lo que hice fue crear un auxiliar que funciona para pasar la recursividad hacia la derecha, para evitar que el árbol de la gramatica crezca infinitamente hacia la izquierda. Quedando de la siguiente manera.
 
-```bnf
-frase_nominal  -> determinante sustantivo adjetivo frase_nominal'| sustantivo adjetivo frase_nominal'
-                | sustantivo frase_nominal'| pronombre frase_nominal'
-
-frase_nominal' -> conjunción frase_nominal frase_nominal'| ε
-```
-
-Es aqui donde se hace uso del elemto "vacio" (ε) para poder finalizar la recursividad en caso de que ya no sea necesario llamar nuevamente a "frase_nominal"
 
 
 
