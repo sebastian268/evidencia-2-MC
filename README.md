@@ -80,4 +80,24 @@ pronombre      -> "nyke" | "ao" | "zȳhon" | "ses" | "til" | "ōs"
 conjunción     -> "vose" | "lōr" | "se"
 ```
 
+Pero el problema de esta gramatica es que cuenta tanto con ambigüedad como con recursión en la izquierda:
+
+Recursividad hacia la izquiera 
+
+```bnf
+frase_nominal  -> frase_nominal conjunción frase_nominal
+```
+
+Aquí en esta parte de la gramática existe lo que es la recursividad hacia la izquierda debido a que el elemento "frase_nominal" se llama a si mismo desde la izqueirda, lo cual podría generar un ciclo infinito hacia la izquierda si no se maneja de la manera correcta, lo cual imposibilita el uso del parser LL(1)
+
+Además la ambigüedad se encuentra en la siguiente linea de la gramatica:
+
+```bnf
+oración        -> sujeto verbo objeto
+                | sujeto verbo
+                | sujeto "issi"
+```
+
+
+
 
