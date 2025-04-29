@@ -58,7 +58,8 @@ oración        -> sujeto verbo objeto | sujeto verbo | sujeto "issi"
 sujeto         -> frase_nominal
 objeto         -> frase_nominal
 
-frase_nominal  -> frase_nominal conjunción frase_nominal | determinante sustantivo adjetivo | determinante sustantivo | sustantivo adjetivo | sustantivo | pronombre
+frase_nominal  -> frase_nominal conjunción frase_nominal | determinante sustantivo adjetivo |
+                determinante sustantivo | sustantivo adjetivo | sustantivo | pronombre
 
 verbo          -> raíz_verbal sufijo_verbal
 
@@ -98,7 +99,8 @@ frase_nominal  -> frase_nominal conjunción frase_nominal
 y para eliminarla lo que hice fue crear un auxiliar que funciona para pasar la recursividad hacia la derecha, para evitar que el árbol de la gramatica crezca infinitamente hacia la izquierda. Quedando de la siguiente manera.
 
 ```bnf
-frase_nominal  -> determinante sustantivo adjetivo frase_nominal'| sustantivo adjetivo frase_nominal'| sustantivo frase_nominal'| pronombre frase_nominal'
+frase_nominal  -> determinante sustantivo adjetivo frase_nominal'| sustantivo adjetivo frase_nominal'
+                | sustantivo frase_nominal'| pronombre frase_nominal'
 
 frase_nominal' -> conjunción frase_nominal frase_nominal'| ε
 ```
