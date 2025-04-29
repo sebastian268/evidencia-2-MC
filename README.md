@@ -47,4 +47,37 @@ En este pequeño ejemplo la recursividad hacia la iquierda se encuentra en la si
 lista -> lista "," elemento
 ```
 
+# Lenguaje elegido 
+
+El lenguaje que elegí para escribir una pequeña gramatica es el "alto valyrio" el cual es el lenguaje hablado por la familia targaryen en los famosos libros de "A song of ice and fire" (el cual puede ser aprendido en la plataforma de Duolingo por cierto)
+
+La gramatica que establecí es la siguiente:
+
+```bnf
+oración        -> sujeto verbo objeto
+                | sujeto verbo
+                | sujeto "issi"
+
+sujeto         -> frase_nominal
+objeto         -> frase_nominal
+
+frase_nominal  -> frase_nominal conjunción frase_nominal
+                | determinante sustantivo adjetivo
+                | determinante sustantivo
+                | sustantivo adjetivo
+                | sustantivo
+                | pronombre
+
+verbo          -> raíz_verbal sufijo_verbal
+
+raíz_verbal    -> "jagon" | "vāedar" | "kēliar" | "rhaenagon" | "drējelagon"
+sufijo_verbal  -> "i" | "is" | "ir" | "ion"
+
+determinante   -> "ābra" | "ziry" | "bisy" | "morys" | "velg" | "līr" | "tīr"
+sustantivo     -> "valzȳrys" | "zaldrīzes" | "azantys" | "qintir" | "voktys" | "melos" | "dūri" | "rhaegon"
+adjetivo       -> "sȳz" | "hāedar" | "zȳhon" | "velos" | "rhaeshisar" | "zalar" | "sūngar"
+pronombre      -> "nyke" | "ao" | "zȳhon" | "ses" | "til" | "ōs"
+conjunción     -> "vose" | "lōr" | "se"
+```
+
 
