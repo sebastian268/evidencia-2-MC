@@ -25,8 +25,7 @@ Para este proyecto usare un parser para indentificar si la palabra pertenece o n
 Un ejmeplo pequeño en donde existe una grámatica con ambigüedad es la siguiente:
 
 ```bnf
-oración   -> oración conjunción oración
-           | palabra
+oración   -> oración conjunción oración | palabra
 
 palabra   -> "llora" | "rie"
 conjunción -> "y"
@@ -54,19 +53,12 @@ El lenguaje que elegí para escribir una pequeña gramatica es el "alto valyrio"
 La gramatica que establecí es la siguiente:
 
 ```bnf
-oración        -> sujeto verbo objeto
-                | sujeto verbo
-                | sujeto "issi"
+oración        -> sujeto verbo objeto | sujeto verbo | sujeto "issi"
 
 sujeto         -> frase_nominal
 objeto         -> frase_nominal
 
-frase_nominal  -> frase_nominal conjunción frase_nominal
-                | determinante sustantivo adjetivo
-                | determinante sustantivo
-                | sustantivo adjetivo
-                | sustantivo
-                | pronombre
+frase_nominal  -> frase_nominal conjunción frase_nominal | determinante sustantivo adjetivo | determinante sustantivo | sustantivo adjetivo | sustantivo | pronombre
 
 verbo          -> raíz_verbal sufijo_verbal
 
@@ -93,11 +85,26 @@ Aquí en esta parte de la gramática existe lo que es la recursividad hacia la i
 Además la ambigüedad se encuentra en la siguiente linea de la gramatica:
 
 ```bnf
-oración        -> sujeto verbo objeto
-                | sujeto verbo
-                | sujeto "issi"
+oración        -> sujeto verbo objeto| sujeto verbo| sujeto "issi"
 ```
 Aqui la ambigüedad se da debido a que una secuenia de palabras que forman una oración se puede dar de diferente maneras, lo cual tambien rompería el parser, ya que este no sabría que camino tomar y se formarian más de un árbol, por lo que es por eso que existe ambigüedad dentro de la gramatica. 
+
+# ¿Pero entonces como eliminar la recursividad hacia la izquierda?
+
+Como había mencionado la recursividad se encuntra aquí:
+```bnf
+frase_nominal  -> frase_nominal conjunción frase_nominal
+```
+y para eliminarla lo que hice fue crear un auxiliar que funciona para pasar la recursividad hacia la derecha, para evitar que el árbol de la gramatica crezca infinitamente hacia la izquierda. Quedando de la siguiente manera.
+
+```bnf
+frase_nominal  -> determinante sustantivo adjetivo frase_nominal'| sustantivo adjetivo frase_nominal'| sustantivo frase_nominal'| pronombre frase_nominal'
+
+frase_nominal' -> conjunción frase_nominal frase_nominal'| ε
+```
+
+Es aqui donde se hace uso del elemto "vacio" (ε) para poder finalizar la recursividad en caso de que ya no sea necesario llamar nuevamente a "frase_nominal"
+
 
 
 
