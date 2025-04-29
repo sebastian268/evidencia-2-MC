@@ -34,4 +34,17 @@ conjunción -> "y"
 
 La ambigüedad se da debido a que hay más de una manera de crear la misma frase, por lo que el parser no sabe que camino tomar y falla.
 
+La recursión hacia la izquierda se da cuando un elemento de la gramatica se llama asi mismo hasta la izquierda, lo cual provoca una recursión hacia la izquierda de manera constante.
+```bnf
+lista  -> lista "," elemento
+        | elemento
+
+elemento -> "a" | "b" | "c"
+```
+En este pequeño ejemplo la recursividad hacia la iquierda se encuentra en la siguiente linea:
+
+```bnf
+lista -> lista "," elemento
+```
+
 
