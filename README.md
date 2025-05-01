@@ -212,5 +212,5 @@ La grámatica en su forma final, es decir, una vez eliminado la recursividad hac
 Según (Context Free Grammars | Brilliant Math & Science Wiki, s. f.) "Una gramática libre de contexto puede describir todos los lenguajes regulares y más, pero no todos los lenguajes posibles" 
 Además una forma sencilla de indentificar una gramatica que es libre de contexto, es que del lado izquierdo de la gramatica solo cuenta con variables y con no terminales. 
 
-
+![Jerarquía de Chomsky](Chomsky.png)
 
