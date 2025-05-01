@@ -219,3 +219,12 @@ Además una forma sencilla de indentificar una gramatica que es libre de context
 
 La complejidad del sistema es de O(n) debido al paser que se utilizo para analizar que las oraciones sean validas en la grámatica establecida.
 Debido a que se elimino tanto la recursividad hacia la izquierda como la ambigüedad de la gramatica por lo que el parser puede entrar por la izquierda de la cadena e ir avanzando hacia la derecha; Por lo que se puede decir claramente que la complejidad es O(n) donde la n dependera de la longitud de la cadena que se etsa analizando. 
+
+
+# Fuentes de información
+
+Princeton (n.d.). LL(1) Parser Visualization. https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
+
+Context Free Grammars | Brilliant Math & Science Wiki. (s. f.). https://brilliant.org/wiki/context-free-grammars/#:~:text=A%20context%2Dfree%20grammar%20is,%2C%20compiler%20design%2C%20and%20linguistics.
+
+SOFTWARE DE GENERACIÓN Y SIMULACIÓN DE TABLAS DE ANÁLISIS SINTÁCTICO (BURGRAM) - An�lisis LL (1). (s. f.). http://cgosorio.es/BURGRAM/index8810.html?Los_algoritmos_de_an%E1lisis%0Asint%E1ctico:An%E1lisis_Sint%E1ctico%0ADescendente:An%E1lisis_LL_%281%29
