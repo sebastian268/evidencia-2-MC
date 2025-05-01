@@ -214,3 +214,8 @@ Además una forma sencilla de indentificar una gramatica que es libre de context
 
 ![Jerarquía de Chomsky](Chomsky.png)
 
+
+# Complejidad
+
+La complejidad del sistema es de O(n) debido al paser que se utilizo para analizar que las oraciones sean validas en la grámatica establecida.
+Debido a que se elimino tanto la recursividad hacia la izquierda como la ambigüedad de la gramatica por lo que el parser puede entrar por la izquierda de la cadena e ir avanzando hacia la derecha; Por lo que se puede decir claramente que la complejidad es O(n) donde la n dependera de la longitud de la cadena que se etsa analizando. 
