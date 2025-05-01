@@ -53,45 +53,83 @@ El lenguaje que elegí para escribir una pequeña gramatica es el "alto valyrio"
 La gramatica que establecí es la siguiente:
 
 ```bnf
-oración        -> sujeto verbo objeto | sujeto verbo | sujeto "issi"
+Dijiste:
+oración        -> sujeto verbo objeto
+                | sujeto verbo
+                | sujeto "issi"
 
 sujeto         -> frase_nominal
+
 objeto         -> frase_nominal
 
-frase_nominal  -> frase_nominal conjunción frase_nominal | determinante sustantivo adjetivo |
-                determinante sustantivo | sustantivo adjetivo | sustantivo | pronombre
+frase_nominal  -> determinante sustantivo adjetivo frase_nominal'
+                | sustantivo adjetivo frase_nominal'
+                | sustantivo frase_nominal'
+                | pronombre frase_nominal'
+
+frase_nominal' -> conjunción frase_nominal 
+                | ε
 
 verbo          -> raíz_verbal sufijo_verbal
 
 raíz_verbal    -> "jagon" | "vāedar" | "kēliar" | "rhaenagon" | "drējelagon"
+
 sufijo_verbal  -> "i" | "is" | "ir" | "ion"
 
 determinante   -> "ābra" | "ziry" | "bisy" | "morys" | "velg" | "līr" | "tīr"
+
 sustantivo     -> "valzȳrys" | "zaldrīzes" | "azantys" | "qintir" | "voktys" | "melos" | "dūri" | "rhaegon"
+
 adjetivo       -> "sȳz" | "hāedar" | "zȳhon" | "velos" | "rhaeshisar" | "zalar" | "sūngar"
+
 pronombre      -> "nyke" | "ao" | "zȳhon" | "ses" | "til" | "ōs"
+
 conjunción     -> "vose" | "lōr" | "se"
 ```
 
-Pero el problema de esta gramatica es que cuenta tanto con ambigüedad como con recursión en la izquierda:
+Pero el problema de esta gramatica es que cuenta tanto con ambigüedad como con recursión en la izquierda
 
-Recursividad hacia la izquiera 
 
-```bnf
-frase_nominal  -> frase_nominal conjunción frase_nominal
-```
-
-Aquí en esta parte de la gramática existe lo que es la recursividad hacia la izquierda debido a que el elemento "frase_nominal" se llama a si mismo desde la izqueirda, lo cual podría generar un ciclo infinito hacia la izquierda si no se maneja de la manera correcta, lo cual imposibilita el uso del parser LL(1)
-
-Además la ambigüedad se encuentra en la siguiente linea de la gramatica:
+La ambigüedad se encuentra en la siguiente linea de la gramatica:
 
 ```bnf
-oración        -> sujeto verbo objeto| sujeto verbo| sujeto "issi"
+oración        -> sujeto verbo objeto | sujeto verbo | sujeto "issi"
+
+sujeto         -> frase_nominal
+
+objeto         -> frase_nominal
 ```
+y en: 
+
+```bnf
+frase_nominal_inicial ::= determinante sustantivo adjetivo  
+frase_nominal_inicial ::= sustantivo adjetivo  
+frase_nominal_inicial ::= sustantivo  
+```
+
 Aqui la ambigüedad se da debido a que una secuenia de palabras que forman una oración se puede dar de diferente maneras, lo cual tambien rompería el parser, ya que este no sabría que camino tomar y se formarian más de un árbol, por lo que es por eso que existe ambigüedad dentro de la gramatica. 
 
-# ¿Pero entonces como eliminar la recursividad hacia la izquierda y la ambigüedad?
+# ¿Pero entonces como eliminar la ambigüedad?
 
+Para eliminar la ambigüedad se debe elimianr eso de que se pueda llegar al mismo "destino" por medio de dos caminos diferentes, haciendo uso de lo que yo denomino camino auxiliar, el cual es un paso más que ayuda a que ya no sea ambigüo.
+
+La solución a la ambigüedad de la producción de una oracion en donde oración tiene dos formas de crear un sujeto seguido de un verbo es la siguiente:
+
+```bnf
+oración ::= sujeto verbo oración'
+oración' ::= objeto
+oración' ::= ε 
+```
+La solución fue generar un paso auxiliar para que de esta manera no hubiera dos formas diferentes de llegar al mismo destino, haciendo asi que cada alternativa iniciara de forma única
+
+De igual manera en la ambigüedad en la parde de frase_nominal_inicial se aplicó el mismo proceso quedando lo siguiente:
+```bnf
+frase_nominal_inicial ::= determinante sustantivo adjetivo
+frase_nominal_inicial ::= sustantivo frase_nominal_s'
+
+frase_nominal_s' ::= adjetivo
+frase_nominal_s' ::= ε
+```
 
 
 
