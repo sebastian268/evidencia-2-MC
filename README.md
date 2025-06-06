@@ -212,7 +212,7 @@ conjunción ::= "se"
 ```
 
 # Código en python 
-
+``` python
 import nltk
 from nltk import CFG
 
@@ -295,6 +295,8 @@ for tree in parser.parse(tokens):
 
 trees = list(parser.parse(tokens))
 print(f"Número de árboles: {len(trees)}")
+
+```
 
 # Que tipo de grámatica es:
 
