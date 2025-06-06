@@ -298,6 +298,24 @@ print(f"Número de árboles: {len(trees)}")
 
 ```
 
+# ¿Comó funciona el código?
+
+El código funciona usando:
+```python
+grammar = CFG.fromstring
+```
+para crear una grámatica que es libre de contexto que define cómo se forman las oraciones en el lenguaje 
+
+luego 
+```python
+nltk.ChartParser(grammar)
+```
+sirve para crear un analizador que va a recorrer la frase para poder analizar la oración 
+
+Posteriormente se definen los "tokens" los cuales son las palabras que conforman la oración que queremos analizar. Un vez definidos los tokens, el parser toma la lista de palabras y busca las formas posibles de generarla la oración, y mediante un ciclo for se imprimen todos los arboles con los que se puede generar la oración (en este caso, al ser sin ambigüedad solo hay un arbol por oración).
+
+Adicionalmente a eso, con ayuda de IA agregué una pequeña función que imprime el número de árboles totales,por lo que si el número de arboles es mayor a 1, hay un error en la gramática.
+
 # Que tipo de grámatica es:
 
 La grámatica en su forma final, es decir, una vez eliminado la recursividad hacia la izquierda y la ambigüedad pertenece al tipo de gramatica conocida como "libre de contexto" estos tipos de gramaticas no dependen de nigún contexto para poder formar cadenas. 
