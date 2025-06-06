@@ -316,6 +316,10 @@ Posteriormente se definen los "tokens" los cuales son las palabras que conforman
 
 Adicionalmente a eso, con ayuda de IA agregué una pequeña función que imprime el número de árboles totales,por lo que si el número de arboles es mayor a 1, hay un error en la gramática.
 
+
+![image](https://github.com/user-attachments/assets/dcc73fd5-b2c5-4a03-90ab-fde3d64f9386)
+
+
 # Que tipo de grámatica es:
 
 La grámatica en su forma final, es decir, una vez eliminado la recursividad hacia la izquierda y la ambigüedad pertenece al tipo de gramatica conocida como "libre de contexto" estos tipos de gramaticas no dependen de nigún contexto para poder formar cadenas. 
